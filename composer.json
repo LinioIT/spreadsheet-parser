@@ -1,0 +1,30 @@
+{
+    "name": "linio/spreadsheet-parser",
+    "description": "Allows you to parse and import spreadsheet data files",
+    "keywords": ["linio", "spreadsheet", "xlsx", "csv", "parser"],
+    "type": "library",
+    "license": "BSD-3-Clause",
+    "require": {
+        "php": "~5.4",
+        "linio/util": "~1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.5.*",
+        "mikey179/vfsStream": "1.4.*"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Linio\\Component\\SpreadsheetParser\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Linio\\Component\\SpreadsheetParser\\": "tests"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
