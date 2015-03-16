@@ -1,4 +1,5 @@
 # Linio Spreadsheet Parser
+[![Latest Stable Version](https://poser.pugx.org/linio/spreadsheet-parser/v/stable.svg)](https://packagist.org/packages/linio/spreadsheet-parser) [![License](https://poser.pugx.org/linio/spreadsheet-parser/license.svg)](https://packagist.org/packages/linio/spreadsheet-parser) [![Build Status](https://secure.travis-ci.org/LinioIT/spreadsheet-parser.png)](http://travis-ci.org/LinioIT/spreadsheet-parser) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LinioIT/spreadsheet-parser/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/LinioIT/spreadsheet-parser/?branch=master)
 
 Linio Spreadsheet Parser allows you to parse and import data files. This component supports
 both text and binary file formats.
