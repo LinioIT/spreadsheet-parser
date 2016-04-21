@@ -2,10 +2,10 @@
 
 namespace Linio\Component\SpreadsheetParser;
 
+use Doctrine\Common\Inflector\Inflector;
 use Linio\Component\SpreadsheetParser\Exception\FileNotFoundException;
 use Linio\Component\SpreadsheetParser\Exception\InvalidFileTypeException;
 use Linio\Component\SpreadsheetParser\Parser\ParserInterface;
-use Linio\Component\Util\String;
 
 class Spreadsheet
 {
@@ -87,7 +87,7 @@ class Spreadsheet
      */
     protected function getParser($filePath, $fileType, array $options = [])
     {
-        $parserClass = sprintf('%s\\Parser\\%sParser', __NAMESPACE__, String::pascalize($fileType));
+        $parserClass = sprintf('%s\\Parser\\%sParser', __NAMESPACE__, Inflector::classify($fileType));
 
         return new $parserClass($filePath, $options);
     }
