@@ -83,6 +83,7 @@ class CsvParser implements ParserInterface
 
     /**
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     *
      * @return array|false
      */
     public function getColumnNames()

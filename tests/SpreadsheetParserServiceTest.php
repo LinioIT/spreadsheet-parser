@@ -3,12 +3,9 @@
 namespace Linio\Component\SpreadsheetParser;
 
 use org\bovigo\vfs\vfsStream;
-use org\bovigo\vfs\vfsStreamDirectory;
-use org\bovigo\vfs\vfsStreamFile;
 
 class SpreadsheetParserServiceTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testIsParsingSpreadsheet()
     {
         $mockDir = vfsStream::setup();

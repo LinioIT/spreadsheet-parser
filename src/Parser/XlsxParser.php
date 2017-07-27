@@ -84,6 +84,7 @@ class XlsxParser implements ParserInterface
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      *
      * @throws SpreadsheetParsingException
+     *
      * @return bool
      */
     public function open()

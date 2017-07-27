@@ -99,6 +99,6 @@ class Spreadsheet
      */
     protected function getFileExtension($filePath)
     {
-        return substr(strrchr($filePath, "."), 1);
+        return substr(strrchr($filePath, '.'), 1);
     }
 }

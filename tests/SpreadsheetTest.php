@@ -6,7 +6,6 @@ use org\bovigo\vfs\vfsStream;
 
 class SpreadsheetTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testIsConstructingObjectWithoutSpecifyingTypeWithValidExtension()
     {
         $mockDir = vfsStream::setup();
