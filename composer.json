@@ -12,9 +12,6 @@
         "phpunit/phpunit": "4.5.*",
         "mikey179/vfsStream": "1.4.*"
     },
-    "config": {
-        "bin-dir": "bin"
-    },
     "autoload": {
         "psr-4": {
             "Linio\\Component\\SpreadsheetParser\\": "src"
