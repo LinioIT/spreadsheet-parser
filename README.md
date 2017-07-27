@@ -8,12 +8,8 @@ both text and binary file formats.
 
 The recommended way to install Linio Spreadsheet Parser is [through composer](http://getcomposer.org).
 
-```JSON
-{
-    "require": {
-        "linio/spreadsheet-parser": "dev-master"
-    }
-}
+```bash
+$ composer install linio/spreadsheet-parser
 ```
 
 ## Tests
@@ -22,7 +18,7 @@ To run the test suite, you need install the dependencies via composer, then
 run PHPUnit.
 
     $ composer install
-    $ phpunit
+    $ vendor/bin/phpunit
 
 ## Usage
 
