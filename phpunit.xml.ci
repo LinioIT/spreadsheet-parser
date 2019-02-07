@@ -7,7 +7,6 @@
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
-         syntaxCheck="true"
          stopOnFailure="false"
          bootstrap="./vendor/autoload.php">
     <testsuites>
@@ -24,10 +23,5 @@
         <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./src</directory>
         </whitelist>
-        <blacklist>
-            <directory>./vendor</directory>
-            <directory>./tests</directory>
-            <file>./src/Parser/ParserInterface.php</file>
-        </blacklist>
     </filter>
 </phpunit>

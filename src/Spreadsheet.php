@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Linio\Component\SpreadsheetParser;
 
 use Doctrine\Common\Inflector\Inflector;
@@ -20,7 +22,6 @@ class Spreadsheet
     /**
      * @param $filePath
      * @param string $fileType
-     * @param array $options
      *
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      *
@@ -81,7 +82,6 @@ class Spreadsheet
     /**
      * @param string $filePath
      * @param string $fileType
-     * @param array $options
      *
      * @return ParserInterface
      */

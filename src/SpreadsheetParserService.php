@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Linio\Component\SpreadsheetParser;
 
 class SpreadsheetParserService
@@ -7,7 +9,6 @@ class SpreadsheetParserService
     /**
      * @param string $filePath
      * @param string $fileType
-     * @param array $options
      *
      * @return Spreadsheet
      */

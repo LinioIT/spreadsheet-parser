@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Linio\Component\SpreadsheetParser;
 
 use org\bovigo\vfs\vfsStream;
 
-class SpreadsheetTest extends \PHPUnit_Framework_TestCase
+class SpreadsheetTest extends \PHPUnit\Framework\TestCase
 {
-    public function testIsConstructingObjectWithoutSpecifyingTypeWithValidExtension()
+    public function testIsConstructingObjectWithoutSpecifyingTypeWithValidExtension(): void
     {
         $mockDir = vfsStream::setup();
         $mockFile = vfsStream::newFile('mockfile.csv')
@@ -17,11 +19,10 @@ class SpreadsheetTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Linio\Component\SpreadsheetParser\Spreadsheet', $actual);
     }
 
-    /**
-     * @expectedException \Linio\Component\SpreadsheetParser\Exception\InvalidFileTypeException
-     */
-    public function testIsNotConstructingObjectWithoutSpecifyingTypeWithInvalidExtension()
+    public function testIsNotConstructingObjectWithoutSpecifyingTypeWithInvalidExtension(): void
     {
+        $this->expectException(\Linio\Component\SpreadsheetParser\Exception\InvalidFileTypeException::class);
+
         $mockDir = vfsStream::setup();
         $mockFile = vfsStream::newFile('mockfile.txt')
             ->at($mockDir);
@@ -29,11 +30,10 @@ class SpreadsheetTest extends \PHPUnit_Framework_TestCase
         $actual = new Spreadsheet($mockFile->url());
     }
 
-    /**
-     * @expectedException \Linio\Component\SpreadsheetParser\Exception\InvalidFileTypeException
-     */
-    public function testIsConstructingObjectWithInvalidType()
+    public function testIsConstructingObjectWithInvalidType(): void
     {
+        $this->expectException(\Linio\Component\SpreadsheetParser\Exception\InvalidFileTypeException::class);
+
         $mockDir = vfsStream::setup();
         $mockFile = vfsStream::newFile('mockfile.csv')
             ->at($mockDir);
@@ -43,11 +43,10 @@ class SpreadsheetTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Linio\Component\SpreadsheetParser\Spreadsheet', $actual);
     }
 
-    /**
-     * @expectedException \Linio\Component\SpreadsheetParser\Exception\InvalidFileTypeException
-     */
-    public function testIsNotConstructingObjectWithInvalidType()
+    public function testIsNotConstructingObjectWithInvalidType(): void
     {
+        $this->expectException(\Linio\Component\SpreadsheetParser\Exception\InvalidFileTypeException::class);
+
         $mockDir = vfsStream::setup();
         $mockFile = vfsStream::newFile('mockfile.csv')
             ->at($mockDir);
@@ -55,11 +54,10 @@ class SpreadsheetTest extends \PHPUnit_Framework_TestCase
         $actual = new Spreadsheet($mockFile->url(), 'txt');
     }
 
-    /**
-     * @expectedException \Linio\Component\SpreadsheetParser\Exception\FileNotFoundException
-     */
-    public function testIsNotConstructingObjectWithFileNotFound()
+    public function testIsNotConstructingObjectWithFileNotFound(): void
     {
+        $this->expectException(\Linio\Component\SpreadsheetParser\Exception\FileNotFoundException::class);
+
         $actual = new Spreadsheet('nop.csv');
     }
 }

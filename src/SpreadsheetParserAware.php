@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Linio\Component\SpreadsheetParser;
 
 trait SpreadsheetParserAware
@@ -14,10 +16,7 @@ trait SpreadsheetParserAware
         return $this->spreadsheetParserService;
     }
 
-    /**
-     * @param SpreadsheetParserService $spreadsheetParserService
-     */
-    public function setSpreadsheetParserService(SpreadsheetParserService $spreadsheetParserService)
+    public function setSpreadsheetParserService(SpreadsheetParserService $spreadsheetParserService): void
     {
         $this->spreadsheetParserService = $spreadsheetParserService;
     }

@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Linio\Component\SpreadsheetParser\Parser;
 
 interface ParserInterface
 {
     /**
      * @param string $filePath
-     * @param array $options
      */
     public function __construct($filePath, array $options = []);
 

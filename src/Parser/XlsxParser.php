@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Linio\Component\SpreadsheetParser\Parser;
 
 use Linio\Component\SpreadsheetParser\Exception\SpreadsheetParsingException;
@@ -152,9 +154,7 @@ class XlsxParser implements ParserInterface
             $skipLine = true;
         }
 
-        $data = $this->readDataFromFile($numRows, $skipLine);
-
-        return $data;
+        return $this->readDataFromFile($numRows, $skipLine);
     }
 
     /**
@@ -176,9 +176,6 @@ class XlsxParser implements ParserInterface
     }
 
     /**
-     * @param \SimpleXMLElement $row
-     * @param \SimpleXMLElement $sharedStrings
-     *
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      *
      * @return array
@@ -219,10 +216,7 @@ class XlsxParser implements ParserInterface
         return rmdir($dir);
     }
 
-    /**
-     * @param array $options
-     */
-    protected function loadParserOptions(array $options)
+    protected function loadParserOptions(array $options): void
     {
         if (isset($options[static::OPTION_HAS_COLUMN_NAMES])) {
             $this->hasColumnNames = $options[static::OPTION_HAS_COLUMN_NAMES];
@@ -240,7 +234,7 @@ class XlsxParser implements ParserInterface
     /**
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
-    protected function setSheetIndexFromSheetName()
+    protected function setSheetIndexFromSheetName(): void
     {
         $this->sheetIndex = null;
         try {
@@ -260,7 +254,7 @@ class XlsxParser implements ParserInterface
         }
     }
 
-    protected function loadXlsxXmlFiles()
+    protected function loadXlsxXmlFiles(): void
     {
         try {
             $this->sharedStringsXml = simplexml_load_file($this->tmpDir . '/xl/sharedStrings.xml');

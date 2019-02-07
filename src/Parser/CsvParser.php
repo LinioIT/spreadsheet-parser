@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Linio\Component\SpreadsheetParser\Parser;
 
 class CsvParser implements ParserInterface
@@ -117,9 +119,7 @@ class CsvParser implements ParserInterface
             $skipLine = true;
         }
 
-        $data = $this->readDataFromFile($numRows, $skipLine);
-
-        return $data;
+        return $this->readDataFromFile($numRows, $skipLine);
     }
 
     /**
@@ -141,11 +141,9 @@ class CsvParser implements ParserInterface
     }
 
     /**
-     * @param array $options
-     *
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
-    protected function loadParserOptions(array $options)
+    protected function loadParserOptions(array $options): void
     {
         if (isset($options[static::OPTION_HAS_COLUMN_NAMES])) {
             $this->hasColumnNames = $options[static::OPTION_HAS_COLUMN_NAMES];

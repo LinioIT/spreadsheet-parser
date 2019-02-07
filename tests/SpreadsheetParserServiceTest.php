@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Linio\Component\SpreadsheetParser;
 
 use org\bovigo\vfs\vfsStream;
 
-class SpreadsheetParserServiceTest extends \PHPUnit_Framework_TestCase
+class SpreadsheetParserServiceTest extends \PHPUnit\Framework\TestCase
 {
-    public function testIsParsingSpreadsheet()
+    public function testIsParsingSpreadsheet(): void
     {
         $mockDir = vfsStream::setup();
         $mockFile = vfsStream::newFile('mockfile.csv')
