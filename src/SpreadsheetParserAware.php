@@ -11,7 +11,7 @@ trait SpreadsheetParserAware
      */
     protected $spreadsheetParserService;
 
-    public function getSpreadsheetParserService()
+    public function getSpreadsheetParserService(): SpreadsheetParserService
     {
         return $this->spreadsheetParserService;
     }

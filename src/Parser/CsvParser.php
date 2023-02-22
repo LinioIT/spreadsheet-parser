@@ -6,11 +6,11 @@ namespace Linio\Component\SpreadsheetParser\Parser;
 
 class CsvParser implements ParserInterface
 {
-    const OPTION_HAS_COLUMN_NAMES = 'has_column_names';
-    const OPTION_LENGTH = 'length';
-    const OPTION_DELIMITER = 'delimiter';
-    const OPTION_ENCLOSURE = 'enclosure';
-    const OPTION_ESCAPE = 'escape';
+    public const OPTION_HAS_COLUMN_NAMES = 'has_column_names';
+    public const OPTION_LENGTH = 'length';
+    public const OPTION_DELIMITER = 'delimiter';
+    public const OPTION_ENCLOSURE = 'enclosure';
+    public const OPTION_ESCAPE = 'escape';
 
     /**
      * @var string
@@ -167,9 +167,6 @@ class CsvParser implements ParserInterface
     }
 
     /**
-     * @param $numRows
-     * @param $skipLine
-     *
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      *
      * @return array

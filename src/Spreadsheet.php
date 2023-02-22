@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Linio\Component\SpreadsheetParser;
 
-use Doctrine\Common\Inflector\Inflector;
+use Doctrine\Inflector\InflectorFactory;
 use Linio\Component\SpreadsheetParser\Exception\FileNotFoundException;
 use Linio\Component\SpreadsheetParser\Exception\InvalidFileTypeException;
 use Linio\Component\SpreadsheetParser\Parser\ParserInterface;
 
 class Spreadsheet
 {
-    const TYPE_XLSX = 'xlsx';
-    const TYPE_CSV = 'csv';
+    public const TYPE_XLSX = 'xlsx';
+    public const TYPE_CSV = 'csv';
 
     /**
      * @var ParserInterface
@@ -20,15 +20,12 @@ class Spreadsheet
     protected $parser;
 
     /**
-     * @param $filePath
-     * @param string $fileType
-     *
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      *
      * @throws FileNotFoundException
      * @throws InvalidFileTypeException
      */
-    public function __construct($filePath, $fileType = null, array $options = [])
+    public function __construct($filePath, string $fileType = null, array $options = [])
     {
         if (!file_exists($filePath)) {
             throw new FileNotFoundException('File not found: ' . $filePath);
@@ -45,10 +42,7 @@ class Spreadsheet
         $this->parser = $this->getParser($filePath, $fileType, $options);
     }
 
-    /**
-     * @return bool
-     */
-    public function open()
+    public function open(): bool
     {
         return $this->parser->open();
     }
@@ -61,43 +55,25 @@ class Spreadsheet
         return $this->parser->getColumnNames();
     }
 
-    /**
-     * @param int $numRows
-     *
-     * @return array
-     */
-    public function getData($numRows = 0)
+    public function getData(int $numRows = 0): array
     {
         return $this->parser->getData($numRows);
     }
 
-    /**
-     * @return bool
-     */
-    public function close()
+    public function close(): bool
     {
         return $this->parser->close();
     }
 
-    /**
-     * @param string $filePath
-     * @param string $fileType
-     *
-     * @return ParserInterface
-     */
-    protected function getParser($filePath, $fileType, array $options = [])
+    protected function getParser(string $filePath, string $fileType, array $options = []): ParserInterface
     {
-        $parserClass = sprintf('%s\\Parser\\%sParser', __NAMESPACE__, Inflector::classify($fileType));
+        $inflector = InflectorFactory::create()->build();
+        $parserClass = sprintf('%s\\Parser\\%sParser', __NAMESPACE__, $inflector->classify($fileType));
 
         return new $parserClass($filePath, $options);
     }
 
-    /**
-     * @param string $filePath
-     *
-     * @return string
-     */
-    protected function getFileExtension($filePath)
+    protected function getFileExtension(string $filePath): string
     {
         return substr(strrchr($filePath, '.'), 1);
     }
