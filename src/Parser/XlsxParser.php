@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace Linio\Component\SpreadsheetParser\Parser;
 
+use Exception;
 use Linio\Component\SpreadsheetParser\Exception\SpreadsheetParsingException;
+use SimpleXMLElement;
+use ZipArchive;
 
 class XlsxParser implements ParserInterface
 {
-    const OPTION_HAS_COLUMN_NAMES = 'has_column_names';
-    const OPTION_SHEET_INDEX = 'sheet_index';
-    const OPTION_SHEET_NAME = 'sheet_name';
+    public const OPTION_HAS_COLUMN_NAMES = 'has_column_names';
+    public const OPTION_SHEET_INDEX = 'sheet_index';
+    public const OPTION_SHEET_NAME = 'sheet_name';
 
     /**
      * @var string
@@ -43,27 +46,27 @@ class XlsxParser implements ParserInterface
     protected $columnNames;
 
     /**
-     * @var \SimpleXMLElement
+     * @var SimpleXMLElement
      */
     protected $appXml;
 
     /**
-     * @var \SimpleXMLElement
+     * @var SimpleXMLElement
      */
     protected $sharedStringsXml;
 
     /**
-     * @var \SimpleXMLElement
+     * @var SimpleXMLElement
      */
     protected $sheetXml;
 
     /**
-     * @var \SimpleXMLElement
+     * @var SimpleXMLElement
      */
     protected $workbookXml;
 
     /**
-     * @var \SimpleXMLElement
+     * @var SimpleXMLElement
      */
     protected $relationshipsXml;
 
@@ -98,7 +101,7 @@ class XlsxParser implements ParserInterface
         $this->tmpDir = tempnam(sys_get_temp_dir(), 'xls');
         unlink($this->tmpDir);
 
-        $zip = new \ZipArchive();
+        $zip = new ZipArchive();
         $zip->open($this->filePath);
         $zip->extractTo($this->tmpDir);
         $zip->close();
@@ -180,7 +183,7 @@ class XlsxParser implements ParserInterface
      *
      * @return array
      */
-    protected function getRowContent(\SimpleXMLElement $row, \SimpleXMLElement $sharedStrings)
+    protected function getRowContent(SimpleXMLElement $row, SimpleXMLElement $sharedStrings)
     {
         $rowContent = [];
         foreach ($row->c as $cell) {
@@ -202,8 +205,6 @@ class XlsxParser implements ParserInterface
     }
 
     /**
-     * @param $dir
-     *
      * @return bool
      */
     protected function delTree($dir)
@@ -239,7 +240,7 @@ class XlsxParser implements ParserInterface
         $this->sheetIndex = null;
         try {
             $this->appXml = simplexml_load_file($this->tmpDir . '/docProps/app.xml');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new SpreadsheetParsingException('Error parsing XLSX internal files');
         }
 
@@ -261,15 +262,12 @@ class XlsxParser implements ParserInterface
             $this->workbookXml = simplexml_load_file($this->tmpDir . '/xl/workbook.xml');
             $this->relationshipsXml = simplexml_load_file($this->tmpDir . '/xl/_rels/workbook.xml.rels');
             $this->sheetXml = simplexml_load_file($this->tmpDir . '/xl/worksheets/sheet' . $this->sheetIndex . '.xml');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new SpreadsheetParsingException('Error parsing XLSX internal files');
         }
     }
 
     /**
-     * @param $numRows
-     * @param $skipLine
-     *
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      *
      * @return array
